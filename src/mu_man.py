@@ -53,28 +53,30 @@
 
 class MuMan:
 
-    def run(state, undocumented, self):
+    def run(self, state, undocumented):
         mu_world, mu_man_state, ghosts, fruit = state
 
         mu_man_vit, mu_man_pos, mu_man_dir, mu_man_lives, mu_man_score = mu_man_state
 
+        closest_dist = 2,147,483,647 # max signed int
+
         # we have 4 possible moves, so see which are valid (aren't walls) and evaluate each one
         # case: up
         x, y = mu_man_pos
-        up_y = y -1
-
-        closest_dist = 2,147,483,647 # max signed int
+        up_y = y - 1
 
         # check if it's a wall
-        if mu_world[up_y[x]] != 0:
-            closest_dist = calc_hn(state, 0)
+        y_row = mu_world[up_y]
+        if y_row[x] != 0:
+            closest_dist = self.calc_hn(state, 0)
             move = 0
 
         # case: down
         down_y = y +1
         # check if it's a wall
-        if mu_world[down_y[x]] != 0:
-            new_dist = calc_hn(state, 2)
+        y_row = mu_world[down_y]
+        if y_row[x] != 0:
+            new_dist = self.calc_hn(state, 2)
             if closest_dist > new_dist:
                 closest_dist = new_dist
                 move = 2
@@ -82,8 +84,9 @@ class MuMan:
         # case: right
         right_x = x +1
         # check if it's a wall
-        if mu_world[y[right_x]] != 0:
-            calc_hn(state, 1)
+        y_row = mu_world[y]
+        if y_row[right_x] != 0:
+            new_dist = self.calc_hn(state, 1)
             if closest_dist > new_dist:
                 closest_dist = new_dist
                 move = 1
@@ -91,8 +94,9 @@ class MuMan:
         # case: right
         left_x = x -1
         # check if it's a wall
-        if mu_world[y[left_x]] != 0:
-            calc_hn(state, 3)
+        y_row = mu_world[y]
+        if y_row[left_x] != 0:
+            new_dist = self.calc_hn(state, 3)
             if closest_dist > new_dist:
                 closest_dist = new_dist
                 move = 3
@@ -100,17 +104,20 @@ class MuMan:
         return (state, move)
 
 
-    def calc_hn(state, move, self):
+    def calc_hn(self, state, move):
+        mu_world, mu_man_state, ghosts, fruit = state
+
         # current heuristic: move towards closest pill
         closest_manh = 2,147,483,647 # max signed int
         closest_x = 0
         closest_y = 0
 
         for y in range(0, len(mu_world)):
-            for x in range(0, len(y)):
-                if mu_world[y[x]] in [2,3,4]:
+            row = mu_world[y]
+            for x in range(0, len(row)):
+                if row[x] in [2,3,4]:
                     # we have something we want to move towards
-                    manh_dist = calc_manh_distance(x, y, state)
+                    manh_dist = self.calc_manh_distance(x, y, state)
                     
                     if closest_manh > manh_dist:
                         closest_manh = manh_dist
@@ -120,7 +127,7 @@ class MuMan:
         return (closest_x, closest_y, closest_manh)
 
 
-    def calc_manh_distance(x, y, state):
+    def calc_manh_distance(self, x, y, state):
         mu_world, mu_man_state, ghosts, fruit = state
         mu_man_vit, mu_man_pos, mu_man_dir, mu_man_lives, mu_man_score = mu_man_state
 
