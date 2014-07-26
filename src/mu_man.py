@@ -107,7 +107,7 @@ class MuMan:
         closest_y = 0
 
         for y in range(0, len(mu_world)):
-            for x in range(0, len(mu_world[y]):
+            for x in range(0, len(y)):
                 if mu_world[y[x]] in [2,3,4]:
                     # we have something we want to move towards
                     manh_dist = calc_manh_distance(x, y, state)

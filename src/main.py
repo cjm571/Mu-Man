@@ -12,11 +12,9 @@
 #############################################
 
 import logging as log
-import sys, os
+import sys
 
-# Gross hack to include MuMan class
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'mu_man'))
-import MuMan
+from mu_man import MuMan
 
 # Global variables
 UTC = 0 # Ultimate Tick Clock
@@ -85,7 +83,8 @@ def main():
     log.info("State initialization complete")
 
     # Pass world state to AI
-    MuMan.run(worldClosure, None)
+    muMan = MuMan()
+    muMan.run(worldClosure, None)
     log.info("State closure passed to AI")
 
     # main loop
