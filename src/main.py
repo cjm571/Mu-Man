@@ -84,7 +84,7 @@ def main():
 
     # Pass world state to AI
     muMan = MuMan()
-    ai_state, funct_ptr = muMan.start_up = (worldClosure, None)
+    ai_state, funct_ptr = muMan.start_up.(worldClosure, None)
     muMan.step(ai_state, worldClosure)
     log.info("State closure passed to AI")
 
