@@ -12,9 +12,11 @@
 #############################################
 
 import logging as log
-import sys
+import sys, os
 
-from ../mu_man/mu_man.py import Mu_Man
+# Gross hack to include MuMan class
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'mu_man'))
+import MuMan
 
 # Global variables
 UTC = 0 # Ultimate Tick Clock
@@ -84,6 +86,7 @@ def main():
 
     # Pass world state to AI
     MuMan.run(worldClosure, None)
+    log.info("State closure passed to AI")
 
     # main loop
     log.info("Entering main loop")
@@ -92,8 +95,8 @@ def main():
         if UTC >= (127*mapWidth*mapHeight*16):
             log.info("UTC EOL reached. Game over.")
             break
-        if  
 
+        UTC = UTC + 1
 
 
 if __name__ == '__main__':
