@@ -1,0 +1,33 @@
+Goals:
+1. Submit something that works (even if it's simple and sucks)
+2. Don't Suck
+3. ...
+4. Profit!
+
+Python Stuff:
+1. primary processor sim that keeps track of the state and asks the mu-man and ghost "objects" what their move will be
+2. ghost classes to play against. these can be as simple or complex as we want, as we don't need to compile them
+3. Mu-Man- this needs to be written as simply as possible as it needs to be compiled (which will basically just be a fancy copy/paste that we mostly hardcode)
+
+Mu-Man Ideas:
+We will use a heuristic search to determine moves.
+
+As discussed, we will use our "magnetism" concept to determine the best move.
+
+Certain things will have attractive properties (fruit, power pills, normal pills) and repulsive properties (ghosts). The closer and more important the are, the stronger the attraction (or repulsion).
+
+We can use DFS to find the best path to important things. We will incorporate this into the heuristic by boosting the value of that move.
+
+Iteration Ideas:
+1. Write all the python for the game world and the ghosts
+2. Write Mu-Man
+   - Initially very simple: greedy algorithm, ignore ghosts
+3. Write compiler
+4. Iterate on Mu-Man
+    - Add better attraction for important things
+    - Add higher scores for closely grouped things
+    - Actively evade ghosts
+    - Predict ghost movement
+    - adversarial search if necessary?
+
+
