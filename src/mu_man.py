@@ -52,8 +52,10 @@
 #           fruit will will be present.
 
 class MuMan:
+    def start_up(self, state, undocumented):
+        return 0, None
 
-    def run(self, state, undocumented):
+    def step(self, ai_state, state):
         mu_world, mu_man_state, ghosts, fruit = state
 
         mu_man_vit, mu_man_pos, mu_man_dir, mu_man_lives, mu_man_score = mu_man_state
@@ -101,7 +103,7 @@ class MuMan:
                 closest_dist = new_dist
                 move = 3
 
-        return (state, move)
+        return (ai_state, move)
 
 
     def calc_hn(self, state, move):
