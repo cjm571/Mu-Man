@@ -30,4 +30,5 @@ Iteration Ideas:
     - Predict ghost movement
     - adversarial search if necessary?
 
-
+Assembly thoughts:
+1. The way "main" and the AI function are kind of wonky. Getting those to work relatively well would be a good first step.
