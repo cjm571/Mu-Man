@@ -11,16 +11,31 @@
 #                                           #
 ###########################################*/
 
-#include <boost/lambda/lambda.hpp>
 #include <iostream>
-#include <iterator>
-#include <algorithm>
+
+#include "MuMap.h"
 
 int main()
 {
-    using namespace boost::lambda;
-    typedef std::istream_iterator<int> in;
+    std::cout << "Begin MainProcessor simulation" << std::endl;
+    unsigned int UTC = 0; // Universal Tick Clock
 
-    std::for_each(
-        in(std::cin), in(), std::cout << (_1 * 3) << " ");
+    // Set initial state of game
+    std::cout << "Begin state initialization" << std::endl;
+
+    // Set default states
+    MuMap map = MuMap();
+
+    std::cout << "Entering main loop" << std::endl;
+    while (true)
+    {
+        // EOL check
+        if (UTC >= (127*map.getWidth()*map.getHeight()*16))
+        {
+            std::cout << "UTC EOL reached. Game over." << std::endl;
+            break;
+        }
+        
+        ++UTC;
+    }
 }

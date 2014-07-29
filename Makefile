@@ -6,7 +6,7 @@
 
 # Compiler variables
 CC = g++
-CFLAGS = -Wall -std=c++0x 
+CFLAGS = -Wall -Wno-unused-local-typedefs -std=c++0x 
 
 # Directory variables
 SrcDir = ./src
@@ -15,10 +15,18 @@ BinDir = ./bin
 LibDir = ./lib
 BOOST_ROOT = $(LibDir)/boost_1_55_0
 
+# Object list variables
+MPObjList = $(addprefix $(ObjDir)/, MuMap.o)
+
 all: $(BinDir)/MainProc
 
-$(BinDir)/MainProc: $(SrcDir)/MainProc.cpp | $(BinDir)
-	$(CC) $(CFLAGS) -I$(BOOST_ROOT) $(SrcDir)/MainProc.cpp -o $@
+# Main Processor Sim targets
+$(BinDir)/MainProc: $(SrcDir)/MainProc.cpp $(MPObjList) | $(BinDir)
+	$(CC) $(CFLAGS) -I$(BOOST_ROOT) $(SrcDir)/MainProc.cpp $(MPObjList) -o $@
+
+$(ObjDir)/MuMap.o: $(SrcDir)/MuMap.cpp $(SrcDir)/MuMap.h | $(ObjDir)
+	$(CC) -c $(CLFAGS) -I$(BOOST_ROOT) $(SrcDir)/MuMap.cpp -o $@
+
 
 # Utility targets
 $(ObjDir):
