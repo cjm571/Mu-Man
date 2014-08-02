@@ -12,7 +12,10 @@
 #                                               #
 ###############################################*/
 
+#include "StdAfx.h"
+
 #include <vector>
+
 
 class MuMap
 {
@@ -23,19 +26,24 @@ public:
     MuMap();
 
     // Creates map based on input parameter
-    MuMap(char**_mapContents);
+    MuMap(char**_contents);
 
     // Destructor
     ~MuMap();
 
 // Data members
 private:
-    unsigned int width;
-    unsigned int height;
-    std::vector< std::vector<unsigned int> > contents;
+    UINT m_width;
+    UINT m_height;
+    std::vector< std::vector<UINT> > m_vContents;
 
-// Accesor Methods
+// Accesors
 public:
-    unsigned int getWidth() {return width;};
-    unsigned int getHeight() {return height;};
+    UINT getWidth()     {return m_width;};
+    UINT getHeight()    {return m_height;};
+
+// Public Methods
+public:
+    // Initializes default map. See /res/default_map.dat
+    MuResult initDefault();
 };
