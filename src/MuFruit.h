@@ -1,12 +1,12 @@
 /*###############################################
 #                                               #
-# Filename: MuMan.h                             #
-# Creation Date: 2014-07-30                     #
+# Filename: MuFruit.h                           #
+# Creation Date: 2014-08-02                     #
 # Creator: CJ McAllister                        #
 #                                               #
 #                                               #
 # Description:                                  #
-#   Class definition for MuMan object           #
+#   Class definition for MuFruit object         #
 #   Follows spec laid out at:                   #
 #   http://icfpcontest.org/specification.html   #
 #                                               #
@@ -17,44 +17,31 @@
 
 #include <utility>
 
-class MuMan
+class MuFruit
 {
 // Ctors
 public:
     // Default Constructor
-    MuMan();
+    MuFruit();
 
-    // Creates MuMan at given location
-    MuMan(std::pair<UINT,UINT> _location);
+    // Creates MuFruit with given location
+    MuFruit(std::pair<UINT,UINT> _location);
 
-    // Destructor
-    ~MuMan();
+    // Destructor;
+    ~MuFruit();
 
 // Data Members
 private:
     // Vitality
-    // Countdown to expiry of active power pill, 0 indicates no active pill
+    // Countdown to expiry of fruit, 0 indicates inactive
     UINT m_vitality;
 
     // Location
     // (x, y) map coordinates
     std::pair<UINT,UINT> m_location;
 
-    // Direction
-    // 0: Up, 1: Right, 2: Down, 3: left
-    eDirection m_direction;
-
-    // Remaining lives
-    UINT m_lives;
-
-    // Current score
-    UINT m_score;
-
 // Accessors
 public:
     UINT getVitality()                  {return m_vitality;};
     std::pair<UINT,UINT> getLocation()  {return m_location;};
-    eDirection getDirectorion()         {return m_direction;};
-    UINT getRemainingLives()            {return m_lives;};
-    UINT getScore()                     {return m_score;};
 };

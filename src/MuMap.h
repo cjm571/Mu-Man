@@ -11,6 +11,7 @@
 #   http://icfpcontest.org/specification.html   #
 #                                               #
 ###############################################*/
+#pragma once
 
 #include "StdAfx.h"
 
@@ -45,5 +46,5 @@ public:
 // Public Methods
 public:
     // Initializes default map. See /res/default_map.dat
-    MuResult initDefault();
+    eMuResult initDefault();
 };

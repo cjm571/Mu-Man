@@ -1,12 +1,12 @@
 /*###############################################
 #                                               #
-# Filename: MuMan.h                             #
-# Creation Date: 2014-07-30                     #
+# Filename: MuGhost.h                           #
+# Creation Date: 2014-08-02                     #
 # Creator: CJ McAllister                        #
 #                                               #
 #                                               #
 # Description:                                  #
-#   Class definition for MuMan object           #
+#   Class definition for MuGhost object         #
 #   Follows spec laid out at:                   #
 #   http://icfpcontest.org/specification.html   #
 #                                               #
@@ -17,24 +17,24 @@
 
 #include <utility>
 
-class MuMan
+class MuGhost
 {
 // Ctors
 public:
     // Default Constructor
-    MuMan();
+    MuGhost();
 
-    // Creates MuMan at given location
-    MuMan(std::pair<UINT,UINT> _location);
+    // Creates MuGhost at given location
+    MuGhost(std::pair<UINT,UINT> _location);
 
     // Destructor
-    ~MuMan();
+    ~MuGhost();
 
 // Data Members
 private:
     // Vitality
-    // Countdown to expiry of active power pill, 0 indicates no active pill
-    UINT m_vitality;
+    // 0: standard, 1: fright, 2: invisible
+    eGhostVitality m_vitality;
 
     // Location
     // (x, y) map coordinates
@@ -44,17 +44,9 @@ private:
     // 0: Up, 1: Right, 2: Down, 3: left
     eDirection m_direction;
 
-    // Remaining lives
-    UINT m_lives;
-
-    // Current score
-    UINT m_score;
-
 // Accessors
 public:
-    UINT getVitality()                  {return m_vitality;};
+    eGhostVitality getVitality()        {return m_vitality;};
     std::pair<UINT,UINT> getLocation()  {return m_location;};
-    eDirection getDirectorion()         {return m_direction;};
-    UINT getRemainingLives()            {return m_lives;};
-    UINT getScore()                     {return m_score;};
+    eDirection getDirection()           {return m_direction;};
 };

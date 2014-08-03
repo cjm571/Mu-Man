@@ -15,25 +15,27 @@
 
 /***** CTORS *****/
 MuMap::MuMap()
-    : width(24), height(22)
+    : m_width(24), m_height(22)
 {
 }
 
 MuMap::~MuMap()
 {
     std::vector< std::vector<UINT> >::iterator itr;
-    for (itr=contents.begin(); itr!=contents.end(); ++itr)
+    for (itr=m_vContents.begin(); itr!=m_vContents.end(); ++itr)
     {
         (*itr).clear();
     }
 
-    contents.clear();
+    m_vContents.clear();
 }
 
 
 /***** PUBLIC METHODS *****/
-MuMap::initDefault()
+eMuResult MuMap::initDefault()
 {
+    eMuResult mr = S_OK;
+
     UINT row00[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
     UINT row01[] = {0,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2,2,2,2,0};
     UINT row02[] = {0,2,0,0,0,2,0,0,0,0,2,0,2,0,0,0,0,2,0,0,0,2,0};
@@ -57,26 +59,28 @@ MuMap::initDefault()
     UINT row20[] = {0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0};
     UINT row21[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
     
-    contents.push_back(std::vector<UINT>(row00, row00 + sizeof(row00) / sizeof(UINT)));
-    contents.push_back(std::vector<UINT>(row01, row01 + sizeof(row01) / sizeof(UINT)));
-    contents.push_back(std::vector<UINT>(row02, row02 + sizeof(row02) / sizeof(UINT)));
-    contents.push_back(std::vector<UINT>(row03, row03 + sizeof(row03) / sizeof(UINT)));
-    contents.push_back(std::vector<UINT>(row04, row04 + sizeof(row04) / sizeof(UINT)));
-    contents.push_back(std::vector<UINT>(row05, row05 + sizeof(row05) / sizeof(UINT)));
-    contents.push_back(std::vector<UINT>(row06, row06 + sizeof(row06) / sizeof(UINT)));
-    contents.push_back(std::vector<UINT>(row07, row07 + sizeof(row07) / sizeof(UINT)));
-    contents.push_back(std::vector<UINT>(row08, row08 + sizeof(row08) / sizeof(UINT)));
-    contents.push_back(std::vector<UINT>(row09, row09 + sizeof(row09) / sizeof(UINT)));
-    contents.push_back(std::vector<UINT>(row10, row10 + sizeof(row10) / sizeof(UINT)));
-    contents.push_back(std::vector<UINT>(row11, row11 + sizeof(row11) / sizeof(UINT)));
-    contents.push_back(std::vector<UINT>(row12, row12 + sizeof(row12) / sizeof(UINT)));
-    contents.push_back(std::vector<UINT>(row13, row13 + sizeof(row13) / sizeof(UINT)));
-    contents.push_back(std::vector<UINT>(row14, row14 + sizeof(row14) / sizeof(UINT)));
-    contents.push_back(std::vector<UINT>(row15, row15 + sizeof(row15) / sizeof(UINT)));
-    contents.push_back(std::vector<UINT>(row16, row16 + sizeof(row16) / sizeof(UINT)));
-    contents.push_back(std::vector<UINT>(row17, row17 + sizeof(row17) / sizeof(UINT)));
-    contents.push_back(std::vector<UINT>(row18, row18 + sizeof(row18) / sizeof(UINT)));
-    contents.push_back(std::vector<UINT>(row19, row19 + sizeof(row19) / sizeof(UINT)));
-    contents.push_back(std::vector<UINT>(row20, row20 + sizeof(row20) / sizeof(UINT)));
-    contents.push_back(std::vector<UINT>(row21, row21 + sizeof(row21) / sizeof(UINT)));
+    m_vContents.push_back(std::vector<UINT>(row00, row00 + sizeof(row00) / sizeof(UINT)));
+    m_vContents.push_back(std::vector<UINT>(row01, row01 + sizeof(row01) / sizeof(UINT)));
+    m_vContents.push_back(std::vector<UINT>(row02, row02 + sizeof(row02) / sizeof(UINT)));
+    m_vContents.push_back(std::vector<UINT>(row03, row03 + sizeof(row03) / sizeof(UINT)));
+    m_vContents.push_back(std::vector<UINT>(row04, row04 + sizeof(row04) / sizeof(UINT)));
+    m_vContents.push_back(std::vector<UINT>(row05, row05 + sizeof(row05) / sizeof(UINT)));
+    m_vContents.push_back(std::vector<UINT>(row06, row06 + sizeof(row06) / sizeof(UINT)));
+    m_vContents.push_back(std::vector<UINT>(row07, row07 + sizeof(row07) / sizeof(UINT)));
+    m_vContents.push_back(std::vector<UINT>(row08, row08 + sizeof(row08) / sizeof(UINT)));
+    m_vContents.push_back(std::vector<UINT>(row09, row09 + sizeof(row09) / sizeof(UINT)));
+    m_vContents.push_back(std::vector<UINT>(row10, row10 + sizeof(row10) / sizeof(UINT)));
+    m_vContents.push_back(std::vector<UINT>(row11, row11 + sizeof(row11) / sizeof(UINT)));
+    m_vContents.push_back(std::vector<UINT>(row12, row12 + sizeof(row12) / sizeof(UINT)));
+    m_vContents.push_back(std::vector<UINT>(row13, row13 + sizeof(row13) / sizeof(UINT)));
+    m_vContents.push_back(std::vector<UINT>(row14, row14 + sizeof(row14) / sizeof(UINT)));
+    m_vContents.push_back(std::vector<UINT>(row15, row15 + sizeof(row15) / sizeof(UINT)));
+    m_vContents.push_back(std::vector<UINT>(row16, row16 + sizeof(row16) / sizeof(UINT)));
+    m_vContents.push_back(std::vector<UINT>(row17, row17 + sizeof(row17) / sizeof(UINT)));
+    m_vContents.push_back(std::vector<UINT>(row18, row18 + sizeof(row18) / sizeof(UINT)));
+    m_vContents.push_back(std::vector<UINT>(row19, row19 + sizeof(row19) / sizeof(UINT)));
+    m_vContents.push_back(std::vector<UINT>(row20, row20 + sizeof(row20) / sizeof(UINT)));
+    m_vContents.push_back(std::vector<UINT>(row21, row21 + sizeof(row21) / sizeof(UINT)));
+
+    return mr;
 }

@@ -1,30 +1,30 @@
 /*###########################################
 #                                           #
-# Filename: MuMan.cpp                       #
+# Filename: MuGhost.cpp                     #
 # Creation Date: 2014-08-02                 #
 # Creator: CJ McAllister                    #
 #                                           #
 #                                           #
 # Description:                              #
-#   Implementation of MuMan class           #
+#   Implementation of MuGhost class         #
 #                                           #
 ###########################################*/
 
-#include "MuMan.h"
+#include "MuGhost.h"
 
 
 /***** CTORS *****/
-MuMan::MuMan()
-    : m_vitality(0), m_direction(Down), m_lives(3), m_score(0)
+MuGhost::MuGhost()
+    : m_vitality(Standard), m_direction(Down)
 {
 }
 
-MuMan::MuMan(std::pair<UINT,UINT> _location)
-    : m_vitality(0), m_direction(Down), m_lives(3), m_score(0)
+MuGhost::MuGhost(std::pair<UINT,UINT> _location)
+    : m_vitality(Standard), m_direction(Down)
 {
     m_location = _location;
 }
 
-MuMan::~MuMan()
+MuGhost::~MuGhost()
 {
 }

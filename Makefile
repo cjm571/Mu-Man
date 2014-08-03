@@ -16,7 +16,7 @@ LibDir = ./lib
 BOOST_ROOT = $(LibDir)/boost_1_55_0
 
 # Object list variables
-MPObjList = $(addprefix $(ObjDir)/, MuMap.o)
+MPObjList = $(addprefix $(ObjDir)/, MuMap.o MuMan.o MuGhost.o MuFruit.o MuWorld.o)
 
 all: $(BinDir)/MainProc
 
@@ -26,6 +26,14 @@ $(BinDir)/MainProc: $(SrcDir)/MainProc.cpp $(MPObjList) | $(BinDir)
 
 $(ObjDir)/MuMap.o: $(SrcDir)/MuMap.cpp $(SrcDir)/MuMap.h | $(ObjDir)
 	$(CC) -c $(CLFAGS) -I$(BOOST_ROOT) $(SrcDir)/MuMap.cpp -o $@
+$(ObjDir)/MuMan.o: $(SrcDir)/MuMan.cpp $(SrcDir)/MuMan.h | $(ObjDir)
+	$(CC) -c $(CLFAGS) -I$(BOOST_ROOT) $(SrcDir)/MuMan.cpp -o $@
+$(ObjDir)/MuGhost.o: $(SrcDir)/MuGhost.cpp $(SrcDir)/MuGhost.h | $(ObjDir)
+	$(CC) -c $(CLFAGS) -I$(BOOST_ROOT) $(SrcDir)/MuGhost.cpp -o $@
+$(ObjDir)/MuFruit.o: $(SrcDir)/MuFruit.cpp $(SrcDir)/MuFruit.h | $(ObjDir)
+	$(CC) -c $(CLFAGS) -I$(BOOST_ROOT) $(SrcDir)/MuFruit.cpp -o $@
+$(ObjDir)/MuWorld.o: $(SrcDir)/MuWorld.cpp $(SrcDir)/MuWorld.h | $(ObjDir)
+	$(CC) -c $(CLFAGS) -I$(BOOST_ROOT) $(SrcDir)/MuWorld.cpp -o $@
 
 
 # Utility targets
