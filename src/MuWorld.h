@@ -30,7 +30,7 @@ public:
     MuWorld();
 
     // Creates world with given inputs
-    MuWorld(MuMap _map, MuMan _muMan, std::vector<MuGhost> _vGhosts, std::vector<MuFruit> _vFruits);
+    MuWorld(MuMap _map, MuMan _muMan, std::vector<MuGhost> _vGhosts, MuFruit _arrFruits[2]);
 
     // Destructor
     ~MuWorld();
@@ -46,13 +46,13 @@ private:
     // Ghost vector
     std::vector<MuGhost> m_vGhosts;
 
-    // Fruit vector
-    std::vector<MuFruit> m_vFruits;
+    // Fruit array
+    MuFruit* m_arrFruits;
 
 // Accessors
 public:
     MuMap getMap()                      {return m_map;};
     MuMan getMuMan()                    {return m_muMan;};
     std::vector<MuGhost> getGhosts()    {return m_vGhosts;};
-    std::vector<MuFruit> getFruits()    {return m_vFruits;};
+    MuFruit* getFruits()                {return m_arrFruits;};
 };

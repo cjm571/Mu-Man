@@ -1,5 +1,5 @@
 ##########################
-# Author: CJ McAllister	 #
+# Author: CJ McAllister  #
 #						 #
 # Created on: 2014-07-29 #
 ##########################

@@ -39,16 +39,17 @@ int main()
     MuMan muMan = MuMan();
     
     std::vector<MuGhost> vGhosts;
-    MuGhost muGhost0 = MuGhost(std::make_pair(11,11));
-    MuGhost muGhost1 = MuGhost(std::make_pair(11,12));
-    MuGhost muGhost2 = MuGhost(std::make_pair(11,13));
-    MuGhost muGhost3 = MuGhost(std::make_pair(12,9));
+    vGhosts.push_back(MuGhost(std::make_pair(11,11)));
+    vGhosts.push_back(MuGhost(std::make_pair(11,12)));
+    vGhosts.push_back(MuGhost(std::make_pair(11,13)));
+    vGhosts.push_back(MuGhost(std::make_pair(12,9)));
 
-    std::vector<MuFruit> vFruits;
-    MuFruit muFruit0 = MuFruit();
-    MuFruit muFruit1 = MuFruit();
 
-    MuWorld muWorld = MuWorld(map, muMan, vGhosts, vFruits);
+    MuFruit arrFruits[2];
+    arrFruits[0] = MuFruit();
+    arrFruits[1] = MuFruit();
+
+    MuWorld muWorld = MuWorld(map, muMan, vGhosts, arrFruits);
 
     std::cout << "State initialization complete" << std::endl;
 
@@ -64,6 +65,8 @@ int main()
             std::cout << "UTC EOL reached. Game over." << std::endl;
             break;
         }
+
+        // Fruit appearance/expiry check
         
         ++UTC;
     }
